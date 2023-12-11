@@ -33,7 +33,6 @@ public:
 
         vao.bind();
         ebo.bind();
-        vao.setAttributePointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void*)0);
         ebo.allocate(indices.data(), sizeof(glm::uvec3) * indices.size());
 
         vao.allocate(verticies.data(), sizeof(glm::vec3) * verticies.size());

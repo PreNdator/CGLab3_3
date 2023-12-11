@@ -57,7 +57,6 @@ void square() {
     //vao.setAttributePointer(0, 3, GL_FLOAT, GL_FALSE, 3*sizeof(float), nullptr);
     vao.create();
     vao.bind();
-    vao.setAttributePointer(0, 3, GL_FLOAT, GL_FALSE, sizeof(glm::vec3), (void*)0);
     vao.allocate(vertices.data(), sizeof(glm::vec3)*vertices.size());
 
 

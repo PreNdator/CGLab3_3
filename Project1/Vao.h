@@ -25,19 +25,8 @@ public:
     void bind() override {
         glBindBuffer(GL_ARRAY_BUFFER, _id);
         glBindVertexArray(_id);
-    }
-
-    template<typename T>
-    void setData(const std::vector<T>& data) {
-        create();
-        bind();
-
-        glBufferData(GL_ARRAY_BUFFER, sizeof(T) * data.size(), data.data(), GL_STATIC_DRAW);
-    }
-
-    void setAttributePointer(GLuint index, GLint size, GLenum type, GLboolean normalized, GLsizei stride, const GLvoid* pointer) {
-        glVertexAttribPointer(index, size, type, normalized, stride, pointer);
-        glEnableVertexAttribArray(index);
+        glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void*)0);
+        glEnableVertexAttribArray(0);
     }
 
     void allocate(void* data, unsigned int size) {
