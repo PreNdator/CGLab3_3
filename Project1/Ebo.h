@@ -2,10 +2,10 @@
 #include "Buffer.h"
 
 
-class EBO : public Buffer {
+class IndexBuffer : public Buffer {
 public:
-    EBO() : _id(0) {}
-    EBO(GLuint id) : _id(id) {}
+    IndexBuffer() : _id(0) {}
+    IndexBuffer(GLuint id) : _id(id) {}
 
     void create() override {
         glGenBuffers(1, &_id);

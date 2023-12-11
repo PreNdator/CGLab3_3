@@ -85,37 +85,9 @@ public:
         return indices;
     }
 
-    std::vector<float> getVertices() {
-        std::vector<float> mergedData;
-        for (size_t i = 0; i < vertices.size(); ++i) {
-            mergedData.push_back(vertices[i].x/2);
-            mergedData.push_back(vertices[i].y/2);
-            mergedData.push_back(vertices[i].z/2);
-
-            mergedData.push_back(textureCoords[i].x);
-            mergedData.push_back(textureCoords[i].y);
-
-            mergedData.push_back(normals[i].x);
-            mergedData.push_back(normals[i].y);
-            mergedData.push_back(normals[i].z);
-        }
-        return mergedData;
-    }
 
     const std::vector<glm::vec3>& getVertices() const {
         return vertices;
-    }
-
-    const std::vector<glm::vec2>& getTextureCoords() const {
-        return textureCoords;
-    }
-
-    const std::vector<glm::vec3>& getNormals() const {
-        return normals;
-    }
-
-    const std::vector<Vertex>& getVerticesData() const {
-        return verticesData;
     }
 
 private:

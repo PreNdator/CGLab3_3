@@ -2,10 +2,10 @@
 #include "Buffer.h"
 #include <vector>
 
-class VAO : public Buffer {
+class VertexBuffer : public Buffer {
 public:
-    VAO() : _id(0) {}
-    VAO(GLuint id) : _id(id) {}
+    VertexBuffer() : _id(0) {}
+    VertexBuffer(GLuint id) : _id(id) {}
 
     void create() override {
         glGenVertexArrays(1, &_id);

@@ -51,8 +51,8 @@ void square() {
     ind.push_back(glm::vec3(1, 2, 3));
 
     Shader shader(vertex_shader, fragment_shader);
-    EBO ebo;
-    VAO vao;
+    IndexBuffer ebo;
+    VertexBuffer vao;
     
     //vao.setAttributePointer(0, 3, GL_FLOAT, GL_FALSE, 3*sizeof(float), nullptr);
     vao.create();
@@ -121,9 +121,14 @@ int main(int argc, char** argv)
     // Зарегистрируем определенную функцию обратного вызова и сообщаем GLFW вызывать эту функцию при каждом изменении размера окна
     glfwSetFramebufferSizeCallback(window, framebuffer_size_callback);
 
-    
-    GLModel model;
-    model.loadModel("data.txt");
+    ModelLoader loader;
+    std::string filePath = "data.txt";
+    if (!loader.isLoad(filePath)) {
+        throw std::runtime_error("Failed to load model from file: " + std::string(filePath));
+        return -1;
+    }
+
+    GLModel model(loader.getVertices(), loader.getIndices());
     
     //square();
 

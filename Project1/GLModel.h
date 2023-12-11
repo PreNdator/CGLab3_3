@@ -27,28 +27,25 @@ const char* fragment_shader =
 
 class GLModel : public DrawableObject {
 public:
-
-
-    GLModel() {
+    GLModel(std::vector<glm::vec3> vertexData, std::vector<glm::uvec3> indexData):verticies(vertexData), indices(indexData),shader(vertex_shader, fragment_shader) {
         vao.create();
         ebo.create();
+
+        vao.bind();
+        ebo.bind();
+        vao.setAttributePointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void*)0);
+        ebo.allocate(indices.data(), sizeof(glm::uvec3) * indices.size());
+
+        vao.allocate(verticies.data(), sizeof(glm::vec3) * verticies.size());
+        release();
     }
 
     void bind() override {
-        Shader shader(vertex_shader, fragment_shader);
+        
         vao.bind();
-        vao.setAttributePointer(0, 3, GL_FLOAT, GL_FALSE, 8 * sizeof(float), (void*)0);
-        vao.setAttributePointer(1, 2, GL_FLOAT, GL_FALSE, 8 * sizeof(float), (void*)(3 * sizeof(float)));
-        vao.setAttributePointer(2, 3, GL_FLOAT, GL_FALSE, 8 * sizeof(float), (void*)(5 * sizeof(float)));
-
-        vao.allocate(vertexData.data(), sizeof(float) * vertexData.size());
         ebo.bind();
-        ebo.allocate(indices.data(), sizeof(glm::uvec3) * indices.size());
-
         shader.use();
     }
-
-
 
     void release() override {
         vao.release();
@@ -59,20 +56,13 @@ public:
         return indices.size();
     }
 
-    void loadModel(const char* filePath) {
-        ModelLoader loader;
-        if (!loader.isLoad(filePath)) {
-            throw std::runtime_error("Failed to load model from file: " + std::string(filePath));
-            return;
-        }    
-        vertexData = loader.getVertices();
-        indices = loader.getIndices();
-    }
 
 private:
-    VAO vao;
-    EBO ebo;
+    VertexBuffer vao;
+    IndexBuffer ebo;
+    Shader shader;
 
-    std::vector<float> vertexData;
+
+    std::vector<glm::vec3> verticies;
     std::vector<glm::uvec3> indices;
 };
