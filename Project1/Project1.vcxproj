@@ -162,9 +162,11 @@
     <ClInclude Include="GLModel.h" />
     <ClInclude Include="ModelLoader.h" />
     <ClInclude Include="Shader.h" />
+    <ClInclude Include="Transform.h" />
     <ClInclude Include="Vao.h" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="AffineTransform3D.h" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>

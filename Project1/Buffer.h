@@ -9,7 +9,6 @@ public:
 
 	virtual void create() = 0;
 	virtual void destroy() = 0;
-
 	virtual void bind() = 0;
 
 	virtual void allocate(void *data, unsigned int size) = 0;

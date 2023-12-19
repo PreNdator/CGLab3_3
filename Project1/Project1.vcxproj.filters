@@ -44,9 +44,15 @@
     <ClInclude Include="ModelLoader.h">
       <Filter>Исходные файлы</Filter>
     </ClInclude>
+    <ClInclude Include="Transform.h">
+      <Filter>Исходные файлы</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+    <None Include="AffineTransform3D.h">
+      <Filter>Исходные файлы</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Text Include="data.txt">

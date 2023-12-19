@@ -2,6 +2,8 @@
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
 #include <glm/common.hpp>
+#include <glm/gtc/matrix_transform.hpp>
+#include <glm/gtc/type_ptr.hpp>
 
 class Shader
 {
@@ -37,6 +39,10 @@ public:
 
     void setVec3(const char* name, const glm::vec3& value) const {
         glUniform3fv(glGetUniformLocation(_shaderId, name), 1, &value[0]);
+    }
+
+    void setMat4(const char* name, const glm::mat4& mat) const {
+        glUniformMatrix4fv(glGetUniformLocation(_shaderId, name), 1, GL_FALSE, glm::value_ptr(mat));
     }
 
     void setVec4(const char* name, const glm::vec4& value) const {
